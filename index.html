@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/slider.min.css" />
+    <script src="./slider.js"></script>
+  </head>
+  <body>
+    <section class="slider">
+      <div class="container">
+        <div class="slider-wrapper">
+          <div class="slider-item">
+            <a href="#">
+              <img src="./assets/images/slider-1.png" alt="" />
+            </a>
+          </div>
+          <div class="slider-item">
+            <a href="#">
+              <img src="./assets/images/slider-2.png" alt="" />
+            </a>
+          </div>
+          <div class="slider-item">
+            <a href="#">
+              <img src="./assets/images/slider-3.png" alt="" />
+            </a>
+          </div>
+          <div class="slider-item">
+            <a href="#">
+              <img src="./assets/images/slider-4.png" alt="" />
+            </a>
+          </div>
+          <div class="slider-item">
+            <a href="#">
+              <img src="./assets/images/slider-5.png" alt="" />
+            </a>
+          </div>
+          <div class="slider-item">
+            <a href="#">
+              <img src="./assets/images/slider-6.png" alt="" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      initialize('.slider-wrapper', {
+        perItem: 4, // always convert into lowest integer
+        gap: '0.5rem', //must be string with unit
+        navigation: true,
+        loop: true,
+        duration: 3000, // default 3s
+        responsive: {
+          576: {
+            perItem: 1,
+          },
+          768: {
+            perItem: 2,
+          },
+          992: {
+            perItem: 3,
+          },
+        },
+      })
+    </script>
+  </body>
+</html>
