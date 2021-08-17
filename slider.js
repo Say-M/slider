@@ -48,7 +48,7 @@ const initialize = (selector, options) => {
   //handle auto loop
   let intervalId //store autoLoop interval function
   const autoLoop = () => {
-    if (-current < sliderItems.length - perItem) {
+    if (-current <= sliderItems.length - perItem) {
       current--
       sliderItems.forEach(
         (sliderItem) =>
@@ -56,11 +56,11 @@ const initialize = (selector, options) => {
       )
       leftArrow.classList.remove('d-none')
       rightArrow.classList.remove('d-none')
-    }
-    if (-current >= sliderItems.length - perItem) {
-      leftArrow.classList.remove('d-none')
-      rightArrow.classList.add('d-none')
-      current = 1
+      if (-current >= sliderItems.length - perItem) {
+        leftArrow.classList.remove('d-none')
+        rightArrow.classList.add('d-none')
+        current = 1
+      }
     }
     if (current === 0) {
       leftArrow.classList.add('d-none')
@@ -68,7 +68,7 @@ const initialize = (selector, options) => {
     }
   }
   if (config.loop) {
-    intervalId = setInterval(autoLoop, config.duration)
+    intervalId = setInterval(autoLoop, config.duration || 3000)
   }
 
   //handle navigation
@@ -88,10 +88,12 @@ const initialize = (selector, options) => {
     sliderContent.parentElement.appendChild(leftArrow)
     sliderContent.parentElement.appendChild(rightArrow)
     leftArrow.addEventListener('click', () => {
-      if (current !== 0) {
+      if (current === 1 && config.loop)
+        current = -(sliderItems.length - perItem)
+      if (current <= 0) {
         if (config.loop) {
           clearInterval(intervalId)
-          intervalId = setInterval(autoLoop, config.duration)
+          intervalId = setInterval(autoLoop, config.duration || 3000)
         }
         current++
         leftArrow.classList.remove('d-none')
@@ -111,7 +113,7 @@ const initialize = (selector, options) => {
     rightArrow.addEventListener('click', () => {
       if (config.loop) {
         clearInterval(intervalId)
-        intervalId = setInterval(autoLoop, config.duration)
+        intervalId = setInterval(autoLoop, config.duration || 3000)
       }
       if (-current < sliderItems.length - perItem) {
         current--
