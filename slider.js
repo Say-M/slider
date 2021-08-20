@@ -31,18 +31,41 @@ const initialize = (selector, options) => {
   //make essential styles in slider-item
   sliderContent.style.margin = `0 -${config.gap}`
   sliderItems.forEach((sliderItem) => {
-    //   sliderItem.firstElementChild.innerHTML = sliderItem.innerHTML.replace(
-    //     '<a',
-    //     '<a draggable="false"'
-    //   )
     const divWrapper = `<div style='margin:0 ${config.gap}'>${sliderItem.innerHTML}</div>`
     sliderItem.innerHTML = divWrapper
     sliderItem.style.minWidth = 100 / perItem + '%'
     sliderItem.style.maxWidth = 100 / perItem + '%'
-    sliderItem.addEventListener('drag', (e) => {
-      e.preventDefault()
-      console.log(e.clientX)
+
+    //handle drag
+    /*let dragStart, dragEnd, dragDifference
+    sliderItem.addEventListener('dragstart', (e) => {
+      dragStart = e.clientX
     })
+    sliderItem.addEventListener('dragend', (e) => {
+      e.preventDefault()
+      dragEnd = e.clientX
+      dragDifference = dragStart - dragEnd
+      if (dragDifference > 200 && -current <= sliderItems.length - perItem) {
+        current--
+        if (config.loop) {
+          clearInterval(intervalId)
+          intervalId = setInterval(autoLoop, config.duration || 3000)
+        }
+        if (-current <= sliderItems.length - perItem) {
+          sliderItems.forEach(
+            (item) => (item.style.transform = `translateX(${current * 100}%)`)
+          )
+          leftArrow.classList.add('d-none')
+          rightArrow.classList.remove('d-none')
+        }
+        // if (-current > sliderItem.length - perItem) current = -1
+      } else if (dragDifference < -200) {
+        current++
+        sliderItems.forEach(
+          (item) => (item.style.transform = `translateX(${current * 100}%)`)
+        )
+      }
+    })*/
   })
 
   //handle auto loop
